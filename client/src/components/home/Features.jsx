@@ -21,11 +21,11 @@ const Features = () => {
 
             <span>Simple process  </span>
         </div>
-
+ 
 
         
 
-
+ 
 
 
 
