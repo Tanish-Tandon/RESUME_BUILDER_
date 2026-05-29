@@ -8,6 +8,13 @@ const ResumePreview = ({data,template,accentColor,classes=""}) => {
 
 
       const renderTemplate = ()=>{
+import ClassicTemplate from "../assets/templates/ClassicTemplate";
+import ModernTemplate from "../assets/templates/ModernTemplate";
+import MinimalTemplate from "../assets/templates/MinimalTemplate";
+import MinimalImageTemplate from "../assets/templates/MinimalImageTemplate";
+const ResumePreview = ({data, template, accentColor, classes = ""}) => {
+
+    const renderTemplate = ()=>{
         switch (template) {
             case "modern":
                 return <ModernTemplate data={data} accentColor={accentColor}/>;
@@ -37,6 +44,13 @@ const ResumePreview = ({data,template,accentColor,classes=""}) => {
         </div>
 
          <style jsx>
+  return (
+    <div className='w-full bg-gray-100'>
+      <div id="resume-preview" className={"border border-gray-200 print:shadow-none print:border-none " + classes}>
+        {renderTemplate()}
+      </div>
+
+      <style jsx>
         {`
         @page {
           size: letter;
