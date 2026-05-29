@@ -7,6 +7,8 @@ import {
   Phone,
   User
 } from "lucide-react";
+
+// import { Linkedin } from "lucide-react";
 import React from 'react'
 
 const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground}) => {
