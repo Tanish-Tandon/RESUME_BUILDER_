@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams,Link } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
-import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, GraduationCapIcon, Sparkles, User } from 'lucide-react'
+import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
+import PersonalInfoForm from '../components/PersonalInfoForm';
+
 
 const ResumeBuilder = () => {
 
@@ -99,9 +101,9 @@ useEffect(()=>{
 
                      <div className='flex items-center'>
                       {activeSectionIndex !== 0 && (
-                        <button onClick={()=>setActiveSectionIndex((prevIndex)=>{Math.max(prevIndex - 1,0)
+                        <button onClick={()=>setActiveSectionIndex((prevIndex)=>Math.max(prevIndex - 1,0)
  
-                        })} className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all' disabled={activeSectionIndex === 0}>
+                        )} className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all' disabled={activeSectionIndex === 0}>
 
 
 
@@ -132,6 +134,11 @@ useEffect(()=>{
                  <div className='space-y-6'>
 
                   {activeSection.id === 'personal' && (
+
+                    <PersonalInfoForm data={resumeData.personal_info} onChange={(data)=>setResumeData(prev=>({...prev,personal_info:data}))}removeBackground={removeBackground}setRemoveBackground={setRemoveBackground}/>
+                  )}
+
+
                     <div> 
 
                       
@@ -140,7 +147,7 @@ useEffect(()=>{
 
                     </div>
 
-                  )}
+                  
 
 
 
