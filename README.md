@@ -1,81 +1,70 @@
 # 🚀 AI Resume Builder
 
 <p align="center">
-  <b>Create ATS-Friendly Resumes with AI Assistance</b>
+  <b>Create Professional ATS-Friendly Resumes with Ease</b>
 </p>
 
 <p align="center">
-  Real-Time Preview • Custom Templates • PDF Export • JWT Authentication • OpenAI Integration
+  Real-Time Preview • Multiple Templates • Color Customization • PDF Export
 </p>
 
 ---
 
 ## 📖 About The Project
 
-AI Resume Builder is a full-stack MERN application that helps users create professional and ATS-friendly resumes efficiently.
+AI Resume Builder is a modern React-based web application designed to help users create professional and ATS-friendly resumes efficiently.
 
-The platform provides customizable resume templates, AI-powered content enhancement, real-time resume preview, image upload support, secure authentication, and PDF export functionality.
+The platform provides real-time resume preview, multiple customizable templates, profile image support, color personalization, and PDF export functionality through a clean and responsive user interface.
 
-This project was developed to simplify the resume-building process while providing modern design customization and AI-assisted content generation.
+This project focuses on delivering a seamless resume-building experience while maintaining modern design standards and recruiter-friendly resume formats.
 
 ---
 
-## ✨ Key Features
-
-### 🔐 Authentication & Security
-
-- User Registration
-- User Login
-- JWT Authentication
-- Protected Routes
-- Secure Password Hashing
+## ✨ Features
 
 ### 📄 Resume Builder
 
-- Create Multiple Resumes
-- Edit Existing Resumes
-- Real-Time Resume Preview
-- Professional Resume Sections
-- ATS-Friendly Formatting
+* Create Professional Resumes
+* Real-Time Resume Preview
+* Multiple Resume Sections
+* ATS-Friendly Resume Layouts
 
 ### 🎨 Customization
 
-- Multiple Resume Templates
-- Color Theme Selection
-- Modern and Minimal Layouts
-- Responsive Design
+* Multiple Resume Templates
+* Accent Color Selection
+* Responsive Design
+* Modern User Interface
 
-### 🤖 AI Features
+### 🖼 Profile Support
 
-- AI Generated Professional Summary
-- Resume Content Enhancement
-- Smart Suggestions
+* Profile Image Upload
+* Background Removal Option
+* Image Preview
 
-### 🖼 Media Support
+### 📥 Export
 
-- Profile Image Upload
-- Background Removal Support
-
-### 📥 Export Features
-
-- Download Resume as PDF
-- Print-Friendly Layout
+* Print-Friendly Resume
+* PDF Download Support
 
 ---
 
 # 🏗️ System Architecture
 
 ```text
-Client (React + Vite)
+React Application
         │
         ▼
-REST API (Node.js + Express)
+Resume Builder Forms
         │
         ▼
-MongoDB Database
+Resume Templates
         │
         ▼
-OpenAI Integration
+Real-Time Preview
+        │
+        ▼
+PDF Export
 ```
 
 ---
@@ -84,37 +73,22 @@ OpenAI Integration
 
 ## Frontend
 
-- React.js
-- Vite
-- Tailwind CSS
-- React Router DOM
-- Axios
-- Lucide React
+* React.js
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Lucide React
 
-## Backend
+## State Management
 
-- Node.js
-- Express.js
+* React Hooks
+* Context API
 
-## Database
+## Development Tools
 
-- MongoDB Atlas
-- Mongoose
-
-## Authentication
-
-- JWT
-- bcryptjs
-
-## AI Integration
-
-- OpenAI API
-
-## Deployment
-
-- Vercel
-- Render
-- MongoDB Atlas
+* Git
+* GitHub
+* npm
 
 ---
 
@@ -130,17 +104,9 @@ RESUME_BUILDER_
 │   │   ├── components
 │   │   ├── pages
 │   │   ├── configs
-│   │   ├── hooks
+│   │   ├── templates
 │   │   └── App.jsx
 │   │
-│   └── package.json
-│
-├── server
-│   ├── controllers
-│   ├── middleware
-│   ├── models
-│   ├── routes
-│   ├── config
 │   └── package.json
 │
 └── README.md
@@ -152,19 +118,19 @@ RESUME_BUILDER_
 
 ### Landing Page
 
-<img width="100%" alt="Landing Page" src="YOUR_SCREENSHOT_LINK">
+(Add Screenshot Here)
 
 ---
 
 ### Resume Builder
 
-<img width="100%" alt="Resume Builder" src="YOUR_SCREENSHOT_LINK">
+(Add Screenshot Here)
 
 ---
 
 ### Resume Preview
 
-<img width="100%" alt="Resume Preview" src="YOUR_SCREENSHOT_LINK">
+(Add Screenshot Here)
 
 ---
 
@@ -176,105 +142,54 @@ RESUME_BUILDER_
 git clone https://github.com/Tanish-Tandon/RESUME_BUILDER_.git
 ```
 
----
-
-## Frontend Setup
+## Install Dependencies
 
 ```bash
 cd client
 
 npm install
-
-npm run dev
 ```
 
-Frontend:
-
-```text
-http://localhost:5173
-```
-
----
-
-## Backend Setup
+## Start Development Server
 
 ```bash
-cd server
-
-npm install
-
 npm run dev
 ```
 
-Backend:
+Application runs on:
 
 ```text
-http://localhost:5000
+http://localhost:5175
 ```
 
 ---
 
-# 🔑 Environment Variables
+# 🎯 Key Highlights
 
-Create a `.env` file inside the server folder.
+✅ ATS-Friendly Resume Templates
 
-```env
-PORT=5000
+✅ Real-Time Resume Preview
 
-MONGODB_URI=YOUR_MONGODB_URI
+✅ Multiple Template Options
 
-JWT_SECRET=YOUR_SECRET_KEY
+✅ Custom Accent Colors
 
-OPENAI_API_KEY=YOUR_OPENAI_KEY
-```
+✅ Profile Image Support
 
----
+✅ Responsive Design
 
-# 📌 API Modules
-
-### Authentication
-
-- Register User
-- Login User
-
-### Resume
-
-- Create Resume
-- Update Resume
-- Delete Resume
-- Fetch Resume
-
-### AI Services
-
-- Generate Professional Summary
-- Improve Resume Content
-
----
-
-# 🎯 ATS Optimization
-
-The generated resumes are designed for:
-
-✅ ATS Compatibility
-
-✅ Professional Formatting
-
-✅ Recruiter Friendly Design
-
-✅ Keyword Optimization
-
-✅ Clean Resume Structure
+✅ PDF Export Support
 
 ---
 
 # 🚀 Future Enhancements
 
-- Resume Analytics
-- Cover Letter Generator
-- Multi-language Support
-- Interview Preparation Assistant
-- Cloud Resume Storage
-- Shareable Resume Links
+* Backend Integration
+* User Authentication
+* Resume Cloud Storage
+* AI-Powered Resume Suggestions
+* Cover Letter Generator
+* Resume Sharing Links
 
 ---
 
@@ -288,8 +203,6 @@ Pranveer Singh Institute of Technology, Kanpur
 
 GitHub:
 https://github.com/Tanish-Tandon
-
-
 
 ---
 
