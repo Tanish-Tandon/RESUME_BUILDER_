@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
 
-    // const {user} = useSelector(state => state.auth)
-    const user = null;
+    const {user} = useSelector(state => state.auth)
 
     const [menuOpen, setMenuOpen] = React.useState(false);
-const logos = [
-  'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png',
-  'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg',
-  'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
-  'https://upload.wikimedia.org/wikipedia/en/0/04/Huawei_Standard_logo.svg',
-  
-]
+
+    const logos = [
+        'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
+        'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
+        'https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg',
+        'https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg',
+        'https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg',
+    ]
 
   return (
     <>
