@@ -1,5 +1,5 @@
 import { Check, Palette } from 'lucide-react';
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const ColorPicker = ({selectedColor, onChange }) => {
     const colors = [
