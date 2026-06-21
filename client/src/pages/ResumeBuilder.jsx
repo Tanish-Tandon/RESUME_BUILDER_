@@ -11,9 +11,9 @@ import ExperienceForm from '../components/ExperienceForm'
 import EducationForm from '../components/EducationForm'
 import ProjectForm from '../components/ProjectForm'
 import SkillsForm from '../components/SkillsForm'
-// import { useSelector } from 'react-redux'
-// import api from '../configs/api'
-// import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
+import api from '../configs/api'
+import toast from 'react-hot-toast'
 
 const ResumeBuilder = () => {
 
@@ -35,6 +35,7 @@ const ResumeBuilder = () => {
   })
 
   const loadExistingResume = async () => {
+     console.log("resumeId =", resumeId)
   const resume = dummyResumeData.find(
     resume => resume._id === resumeId
   )

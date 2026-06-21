@@ -1,5 +1,5 @@
 import { FilePenLineIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
-import  { useEffect, useState } from 'react'
+import   { useEffect, useState } from 'react'
 import { dummyResumeData } from '../assets/assets'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -162,7 +162,7 @@ const Dashboard = () => {
                           <p>Upload resume</p>
                         </>
                       )}
-                    </div>
+                    </div> 
                   </label>
                   <input type="file" id='resume-input' accept='.pdf' hidden onChange={(e)=> setResume(e.target.files[0])}/>
                 </div>
