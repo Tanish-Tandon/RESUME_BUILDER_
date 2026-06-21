@@ -87,9 +87,10 @@ const ResumeBuilder = () => {
   const handleShare = () =>{
     const frontendUrl = window.location.href.split('/app/')[0];
     const resumeUrl = frontendUrl + '/view/' + resumeId;
+        console.log("SHARE URL =", resumeUrl);
 
     if(navigator.share){
-      navigator.share({url: resumeUrl, text: "My Resume", })
+      navigator.share({url: resumeUrl })
     }else{
       alert('Share not supported on this browser.')
     }

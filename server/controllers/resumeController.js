@@ -161,28 +161,38 @@ export const getResumeById = async (req, res) => {
 // get resume by id public
 // GET: /api/resumes/public
 
-export const getPublicResumeById=async(req,res)=>{
+export const getPublicResumeById = async(req,res)=>{
 
     try{
 
         const {resumeId}=req.params;
 
-        const resume = await Resume.findOne({public: true, _id: resumeId})
+       
+        console.log("PARAMS =", req.params);
+        console.log("RESUME ID =", resumeId);
+
+        const resume = await Resume.findOne({
+            public:true,
+            _id:resumeId
+        })
+
+        console.log("FOUND =", resume);
 
         if(!resume){
-        return res.status(404).json({message: "Resume not found"})
-       }
+            return res.status(404).json({message:"Resume not found"})
+        }
 
-       return res.status(200).json({resume})
+        return res.status(200).json({resume})
 
-    }
+    }catch(error){
 
-    catch(error){
-        return res.status(400).json({message: error.message})
+        console.log(error);
+
+        return res.status(400).json({
+            message:error.message
+        })
     }
 }
-    
-
 
 
 
@@ -207,6 +217,10 @@ export const getPublicResumeById=async(req,res)=>{
 // PUT: /api/resumes/update
 export const updateResume = async (req, res) =>{
     try {
+
+     console.log("BODY =", req.body);
+console.log("FILE =", req.file);
+console.log("USER =", req.userId);
         const userId = req.userId;
         const {resumeId, resumeData, removeBackground} = req.body
         const image = req.file;
@@ -247,6 +261,7 @@ export const updateResume = async (req, res) =>{
 
        return res.status(200).json({message: 'Saved successfully', resume})
     } catch (error) {
+        console.log("ERROR =", error);
         return res.status(400).json({message: error.message})
     }
 }
