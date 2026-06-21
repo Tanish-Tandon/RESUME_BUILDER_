@@ -1,66 +1,33 @@
-// import React from 'react'
-import { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { dummyResumeData } from '../assets/assets'
+// import { dummyResumeData } from '../assets/assets'
 import ResumePreview from '../components/ResumePreview'
 import Loader from '../components/Loader'
 import { ArrowLeftIcon } from 'lucide-react'
-import { useEffect } from 'react'
-
+import api from '../configs/api'
 
 const Preview = () => {
+  const { resumeId } = useParams()
 
-
-  const {resumeId}=useParams()
-   const [isLoading, setIsLoading] = useState(true)
-
-  const [resumeData,setResumeData]=useState(null)
-
-
-  //   setResumeData(dummyResumeData.find(resume=>resume._id===resumeId || null))
-  // }
-
-
-
-
-  // const loadResume = async () => {
-  //   try {
-  //     setResumeData(dummyResumeData.find(resume=>resume._id===resumeId || null))
-  //     // const { data } = await api.get('/api/resumes/public/' + resumeId)
-  //     // setResumeData(data.resume)
-  //   } 
-  //   catch (error) {
-  //     console.log(error.message);
-  //   }
-  //   finally{
-  //     setIsLoading(false)
-  //   }
-  // }
-
-
+  const [isLoading, setIsLoading] = useState(true)
+  const [resumeData, setResumeData] = useState(null)
 
   const loadResume = async () => {
-  console.log("resumeId =", resumeId)
-
-  const resume = dummyResumeData.find(
-    item => item._id === resumeId
-  )
-
-  console.log("found =", resume)
-
-  setResumeData(resume || null)
-  setIsLoading(false)
-}
-
-
+    try {
+      const { data } = await api.get('/api/resumes/public/' + resumeId)
+      setResumeData(data.resume)
+    } catch (error) {
+      console.log(error.message);
+    }finally{
+      setIsLoading(false)
+    }
+  }
 
   useEffect(()=>{
     loadResume()
-
   },[])
-
-
-return resumeData ? (
+  
+  return resumeData ? (
     <div className='bg-slate-100'>
       <div className='max-w-3xl mx-auto py-10'>
         <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color} classes='py-4 bg-white'/>
@@ -79,8 +46,6 @@ return resumeData ? (
       )}
     </div>
   )
-
-
 }
 
 export default Preview

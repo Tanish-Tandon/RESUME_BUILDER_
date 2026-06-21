@@ -2,6 +2,7 @@ import express from 'express';
 
 import cors from 'cors';
 import "dotenv/config";
+console.log("IMAGEKIT_PRIVATE_KEY =", process.env.IMAGEKIT_PRIVATE_KEY);
 
 import connectDB from './configs/db.js'; 
 import userRouter from './routes/userRoutes.js';
