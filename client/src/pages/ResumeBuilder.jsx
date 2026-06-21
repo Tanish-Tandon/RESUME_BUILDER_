@@ -18,7 +18,7 @@ import toast from 'react-hot-toast'
 const ResumeBuilder = () => {
 
   const { resumeId } = useParams()
-  // const {token} = useSelector(state => state.auth)
+  const {token} = useSelector(state => state.auth)
 
   const [resumeData, setResumeData] = useState({
     _id: '',
@@ -35,16 +35,16 @@ const ResumeBuilder = () => {
   })
 
   const loadExistingResume = async () => {
-     console.log("resumeId =", resumeId)
-  const resume = dummyResumeData.find(
-    resume => resume._id === resumeId
-  )
-
-  if (resume) {
-    setResumeData(resume)
-    document.title = resume.title
+   try {
+    const {data} = await api.get('/api/resumes/get/' + resumeId, {headers: { Authorization: token }})
+    if(data.resume){
+      setResumeData(data.resume)
+      document.title = data.resume.title;
+    }
+   } catch (error) {
+    console.log(error.message)
+   }
   }
-}
 
   const [activeSectionIndex, setActiveSectionIndex] = useState(0)
   const [removeBackground, setRemoveBackground] = useState(false);
