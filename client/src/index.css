@@ -2,14 +2,15 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+    /* Light mode default, dark mode ke liye dark:bg-slate-950 */
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300;
   }
 }
 
 /* Print Specific Rules */
 @media print {
   @page { size: A4 portrait; margin: 0; }
-  body { background: #ffffff !important; }
+  body { background: #ffffff !important; color: #000000 !important; }
   #resume-preview {
     width: 210mm !important;
     padding: 15mm !important;

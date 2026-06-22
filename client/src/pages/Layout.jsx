@@ -4,7 +4,8 @@ import Navbar from '../components/Navbar';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
-const Layout = () => {
+// props add kiye hain taaki App.jsx se Navbar tak data jaye
+const Layout = ({ darkMode, setDarkMode }) => {
   const { user, loading, token } = useSelector(state => state.auth);
   const location = useLocation();
 
@@ -12,7 +13,6 @@ const Layout = () => {
     return <Loader />;
   }
 
-  // FIXED: Agar logged in nahi hai toh strictly /app/auth par redirect karo
   if (!user || !token) {
     return <Navigate to="/app/auth?state=login" state={{ from: location }} replace />;
   }
@@ -20,7 +20,8 @@ const Layout = () => {
   return (
     <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
       <div className='min-h-screen flex flex-col'>
-        <Navbar />
+        {/* Props pass kiye Navbar ko */}
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main className="flex-1 w-full">
           <Outlet />
         </main>
