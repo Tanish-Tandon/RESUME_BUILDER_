@@ -1,300 +1,168 @@
 # 🚀 AI Resume Builder
 
-<p align="center">
-  <b>Create ATS-Friendly Resumes with AI Assistance</b>
-</p>
+An AI-powered Resume Builder that enables users to create ATS-friendly professional resumes using Groq-powered Llama 3 models, real-time editing, customizable templates, and instant PDF export.
 
-<p align="center">
-  Real-Time Preview • Custom Templates • PDF Export • JWT Authentication • OpenAI Integration
-</p>
+## ✨ Features
 
----
+### 👤 User Features
 
-## 📖 About The Project
-
-AI Resume Builder is a full-stack MERN application that helps users create professional and ATS-friendly resumes efficiently.
-
-The platform provides customizable resume templates, AI-powered content enhancement, real-time resume preview, image upload support, secure authentication, and PDF export functionality.
-
-This project was developed to simplify the resume-building process while providing modern design customization and AI-assisted content generation.
-
----
-
-## ✨ Key Features
-
-### 🔐 Authentication & Security
-
-- User Registration
-- User Login
-- JWT Authentication
-- Protected Routes
-- Secure Password Hashing
-
-### 📄 Resume Builder
-
-- Create Multiple Resumes
-- Edit Existing Resumes
-- Real-Time Resume Preview
-- Professional Resume Sections
-- ATS-Friendly Formatting
-
-### 🎨 Customization
-
-- Multiple Resume Templates
-- Color Theme Selection
-- Modern and Minimal Layouts
-- Responsive Design
+* Secure Authentication using JWT
+* User Registration & Login
+* Create and Manage Multiple Resumes
+* Real-Time Resume Editing
+* Live Resume Preview
+* Multiple Resume Templates
+* Custom Color Themes
+* PDF Download Functionality
+* Responsive Design for Mobile & Desktop
+* Resume Data Persistence using MongoDB
 
 ### 🤖 AI Features
 
-- AI Generated Professional Summary
-- Resume Content Enhancement
-- Smart Suggestions
+* Professional Summary Generation
+* AI-Based Resume Content Suggestions
+* Resume Enhancement using Groq API
+* Llama 3 Powered Text Generation
+* Smart Resume Writing Assistance
 
-### 🖼 Media Support
+### 🔒 Security
 
-- Profile Image Upload
-- Background Removal Support
-
-### 📥 Export Features
-
-- Download Resume as PDF
-- Print-Friendly Layout
-
----
-
-# 🏗️ System Architecture
-
-```text
-Client (React + Vite)
-        │
-        ▼
-REST API (Node.js + Express)
-        │
-        ▼
-MongoDB Database
-        │
-        ▼
-OpenAI Integration
-```
+* JWT Authentication
+* Password Hashing using bcrypt
+* Protected Routes
+* Secure API Handling
+* Environment Variable Protection
+* Role-Based Access Control
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-## Frontend
+### Frontend
 
-- React.js
-- Vite
-- Tailwind CSS
-- React Router DOM
-- Axios
-- Lucide React
+* React.js
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Axios
 
-## Backend
+### Backend
 
-- Node.js
-- Express.js
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* bcryptjs
 
-## Database
+### AI Integration
 
-- MongoDB Atlas
-- Mongoose
+* Groq API
+* Llama 3 Model
 
-## Authentication
+### Additional Tools
 
-- JWT
-- bcryptjs
-
-## AI Integration
-
-- OpenAI API
-
-## Deployment
-
-- Vercel
-- Render
-- MongoDB Atlas
+* Git & GitHub
+* Vercel
+* Render
 
 ---
 
-# 📂 Project Structure
-
-```text
-RESUME_BUILDER_
-│
-├── client
-│   ├── public
-│   ├── src
-│   │   ├── assets
-│   │   ├── components
-│   │   ├── pages
-│   │   ├── configs
-│   │   ├── hooks
-│   │   └── App.jsx
-│   │
-│   └── package.json
-│
-├── server
-│   ├── controllers
-│   ├── middleware
-│   ├── models
-│   ├── routes
-│   ├── config
-│   └── package.json
-│
-└── README.md
-```
-
----
-
-# 📸 Application Screenshots
-
-### Landing Page
-
-<img width="100%" alt="Landing Page" src="YOUR_SCREENSHOT_LINK">
-
----
-
-### Resume Builder
-
-<img width="100%" alt="Resume Builder" src="YOUR_SCREENSHOT_LINK">
-
----
-
-### Resume Preview
-
-<img width="100%" alt="Resume Preview" src="YOUR_SCREENSHOT_LINK">
-
----
-
-# ⚙️ Local Setup
-
-## Clone Repository
-
-```bash
-git clone https://github.com/Tanish-Tandon/RESUME_BUILDER_.git
-```
-
----
-
-## Frontend Setup
-
-```bash
-cd client
-
-npm install
-
-npm run dev
-```
+## 🌐 Local Development URLs
 
 Frontend:
-
-```text
-http://localhost:5175
-```
-
----
-
-## Backend Setup
-
-```bash
-cd server
-
-npm install
-
-npm run dev
-```
+http://localhost:5175/
 
 Backend:
-
-```text
-http://localhost:5000
-```
+http://localhost:9000/
 
 ---
 
-# 🔑 Environment Variables
-
-Create a `.env` file inside the server folder.
+## 🔑 Environment Variables
 
 ```env
-PORT=5000
+PORT=9000
 
-MONGODB_URI=YOUR_MONGODB_URI
+MONGO_URI=your_mongodb_connection_string
 
-JWT_SECRET=YOUR_SECRET_KEY
+JWT_SECRET=your_jwt_secret
 
-OPENAI_API_KEY=YOUR_OPENAI_KEY
+GROQ_API_KEY=your_groq_api_key
 ```
 
 ---
 
-# 📌 API Modules
+## 🚀 Deployment
+
+### Frontend
+
+* Vercel
+* Netlify
+
+### Backend
+
+* Render
+* Railway
+* Vercel
+
+### Database
+
+* MongoDB Atlas
+
+---
+
+## 📡 API Endpoints
 
 ### Authentication
 
-- Register User
-- Login User
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
+```
 
 ### Resume
 
-- Create Resume
-- Update Resume
-- Delete Resume
-- Fetch Resume
+```http
+POST   /api/resume/create
+GET    /api/resume/:id
+PUT    /api/resume/:id
+DELETE /api/resume/:id
+```
 
-### AI Services
+### AI
 
-- Generate Professional Summary
-- Improve Resume Content
-
----
-
-# 🎯 ATS Optimization
-
-The generated resumes are designed for:
-
-✅ ATS Compatibility
-
-✅ Professional Formatting
-
-✅ Recruiter Friendly Design
-
-✅ Keyword Optimization
-
-✅ Clean Resume Structure
+```http
+POST /api/ai/generate-summary
+POST /api/ai/improve-content
+```
 
 ---
 
-# 🚀 Future Enhancements
+## 🎯 Future Enhancements
 
-- Resume Analytics
-- Cover Letter Generator
-- Multi-language Support
-- Interview Preparation Assistant
-- Cloud Resume Storage
-- Shareable Resume Links
+* ATS Score Checker
+* Cover Letter Generator
+* Resume Analytics Dashboard
+* LinkedIn Profile Import
+* Multi-Language Support
+* Share Resume via Public Link
+* Resume Version History
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
-### Tanish Tandon
-
-B.Tech Information Technology
-
-Pranveer Singh Institute of Technology, Kanpur
+Tanish Tandon
 
 GitHub:
 https://github.com/Tanish-Tandon
 
-
+LinkedIn:
+https://linkedin.com/in/tanish-tandon-2b4199310
 
 ---
 
-## ⭐ Support
+## 📄 License
 
-If you found this project useful, consider giving it a star on GitHub.
-
-
+This project is licensed under the MIT License. See the LICENSE file for details.
