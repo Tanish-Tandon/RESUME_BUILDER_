@@ -215,53 +215,103 @@ export const getPublicResumeById = async(req,res)=>{
 
 // controller for updating a resume
 // PUT: /api/resumes/update
-export const updateResume = async (req, res) =>{
-    try {
+// export const updateResume = async (req, res) =>{
+//     try {
 
-     console.log("BODY =", req.body);
-console.log("FILE =", req.file);
-console.log("USER =", req.userId);
-        const userId = req.userId;
-        const {resumeId, resumeData, removeBackground} = req.body
-        const image = req.file;
+//      console.log("BODY =", req.body);
+// console.log("FILE =", req.file);
+// console.log("USER =", req.userId);
+//         const userId = req.userId;
+//         const {resumeId, resumeData, removeBackground} = req.body
+//         const image = req.file;
         
-        let resumeDataCopy; 
-        if(typeof resumeData === 'string'){
-            resumeDataCopy = await JSON.parse(resumeData)
-        }else{
-            resumeDataCopy = structuredClone(resumeData)
-        }
+//         let resumeDataCopy; 
+//         if(typeof resumeData === 'string'){
+//             resumeDataCopy = await JSON.parse(resumeData)
+//         }else{
+//             resumeDataCopy = structuredClone(resumeData)
+//         }
 
-        if(image){
+//         if(image){
             
 
-            const imageBufferData = fs.createReadStream(image.path)
+//             const imageBufferData = fs.createReadStream(image.path)
 
-            const response=await imagekit.files.upload({
+//             const response=await imagekit.files.upload({
+//                 file: imageBufferData,
+//                 fileName: image.originalname,
+//                 folder: 'resume.png',
+//                 folder:'user-resumes',
+//                 transformation:{
+//                     pre:'w-300,h-300,fo-face,z-0.75' +
+//                     (removeBackground ? ',e-bgremove':   '')
+//                 }
+//             });
+
+//             resumeDataCopy.personal_info.image=response.url;
+
+
+
+
+
+        
+//         }
+
+//        const resume = await Resume.findOneAndUpdate({userId, _id: resumeId}, resumeDataCopy, {new: true})
+
+//        return res.status(200).json({message: 'Saved successfully', resume})
+//     } catch (error) {
+//         console.log("ERROR =", error);
+//         return res.status(400).json({message: error.message})
+//     }
+// }
+
+
+
+// controller for updating a resume
+export const updateResume = async (req, res) => {
+    try {
+        const userId = req.userId;
+        const { resumeId, resumeData, removeBackground } = req.body;
+        const image = req.file;
+
+        let resumeDataCopy;
+        if (typeof resumeData === 'string') {
+            resumeDataCopy = await JSON.parse(resumeData);
+        } else {
+            resumeDataCopy = structuredClone(resumeData);
+        }
+
+        if (image) {
+            const imageBufferData = fs.createReadStream(image.path);
+            
+            // Yahan folder property fix ki hai
+            const response = await imagekit.files.upload({
                 file: imageBufferData,
                 fileName: image.originalname,
-                folder: 'resume.png',
-                folder:'user-resumes',
-                transformation:{
-                    pre:'w-300,h-300,fo-face,z-0.75' +
-                    (removeBackground ? ',e-bgremove':   '')
+                folder: 'user-resumes', // Sirf ek hi folder rakho
+                transformation: {
+                    pre: 'w-300,h-300,fo-face,z-0.75' + (removeBackground ? ',e-bgremove' : '')
                 }
             });
 
-            resumeDataCopy.personal_info.image=response.url;
-
-
-
-
-
-        
+            resumeDataCopy.personal_info.image = response.url;
+            
+            // Upload ke baad file delete karna zaruri hai taaki server fill na ho
+            fs.unlink(image.path, (err) => {
+                if (err) console.error("Temp file delete error:", err);
+            });
         }
 
-       const resume = await Resume.findOneAndUpdate({userId, _id: resumeId}, resumeDataCopy, {new: true})
+        const resume = await Resume.findOneAndUpdate(
+            { userId, _id: resumeId },
+            resumeDataCopy,
+            { new: true }
+        );
 
-       return res.status(200).json({message: 'Saved successfully', resume})
+        return res.status(200).json({ message: 'Saved successfully', resume });
     } catch (error) {
         console.log("ERROR =", error);
-        return res.status(400).json({message: error.message})
+        return res.status(400).json({ message: error.message });
     }
-}
+};

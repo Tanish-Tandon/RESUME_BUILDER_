@@ -1,61 +1,64 @@
-import { Check, Layout } from 'lucide-react'
-import  { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
+import { Check, Layout } from 'lucide-react';
 
 const TemplateSelector = ({ selectedTemplate, onChange }) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     const templates = [
-        {
-            id: "classic",
-            name: "Classic",
-            preview: "A clean, traditional resume format with clear sections and professional typography"
-        },
-        {
-            id: "modern",
-            name: "Modern",
-            preview: "Sleek design with strategic use of color and modern font choices"
-        },
-        {
-            id: "minimal-image",
-            name: "Minimal Image",
-            preview: "Minimal design with a single image and clean typography"
-        },
-            {
-            id: "minimal",
-            name: "Minimal",
-            preview: "Ultra-clean design that puts your content front and center"
-        },
-    ]
-  return (
-    <div className='relative'>
-      <button onClick={()=> setIsOpen(!isOpen)} className='flex items-center gap-1 text-sm text-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 ring-blue-300 hover:ring transition-all px-3 py-2 rounded-lg'>
-        <Layout size={14} /> <span className='max-sm:hidden'>Template</span>
-      </button>
-      {isOpen && (
-        <div className='absolute top-full w-xs p-3 mt-2 space-y-3 z-10 bg-white rounded-md border border-gray-200 shadow-sm'>
-            {templates.map((template)=>(
-                <div key={template.id} onClick={()=> {onChange(template.id); setIsOpen(false)}} className={`relative p-3 border rounded-md cursor-pointer transition-all ${selectedTemplate === template.id ?
-                    "border-blue-400 bg-blue-100"
-                    : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
-                }`}>
-                    {selectedTemplate === template.id && (
-                        <div className="absolute top-2 right-2">
-                            <div className='size-5 bg-blue-400 rounded-full flex items-center justify-center'>
-                                <Check className="w-3 h-3 text-white" />
-                            </div>
-                        </div>
-                    )}
+        { id: "classic", name: "Classic Corporate", preview: "Traditional clean layout." },
+        { id: "modern", name: "Modern Developer", preview: "Sleek with header colors." },
+        { id: "minimal", name: "Ultra Minimalist", preview: "Clean typography focused." },
+        { id: "minimal-image", name: "Minimal Image", preview: "With profile picture." },
+        { id: "deedy", name: "Deedy Minimalist", preview: "Technical enterprise layout." }
+    ];
 
-                    <div className="space-y-1">
-                        <h4 className='font-medium text-gray-800'>{template.name}</h4>
-                        <div className='mt-2 p-2 bg-blue-50 rounded text-xs text-gray-500 italic'>{template.preview}</div>
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    return (
+        <div className='relative inline-block text-left' ref={dropdownRef}>
+            <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className='flex items-center gap-2 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200/60 shadow-sm hover:bg-blue-100 transition-all px-4 py-2.5 rounded-xl outline-none focus:ring-2 focus:ring-blue-400'
+            >
+                <Layout size={14} /> 
+                <span>Active Canvas Blueprint</span>
+            </button>
+
+            {isOpen && (
+                <div className='absolute left-0 mt-2 w-80 max-h-[420px] overflow-y-auto p-3 z-[150] bg-white rounded-2xl border border-slate-200 shadow-xl scrollbar-hide animate-in fade-in slide-in-from-top-1 duration-200'>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 mb-2">Select Layout Framework</p>
+                    <div className="space-y-2">
+                        {templates.map((template) => (
+                            <div 
+                                key={template.id} 
+                                onClick={() => { onChange(template.id); setIsOpen(false); }} 
+                                className={`relative p-3 border rounded-xl cursor-pointer transition-all ${selectedTemplate === template.id ? "border-blue-500 bg-blue-50/70 shadow-sm" : "border-slate-100 hover:border-slate-200 hover:bg-slate-50"}`}
+                            >
+                                {selectedTemplate === template.id && (
+                                    <div className="absolute top-3 right-3 size-4 bg-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                                        <Check className="w-2.5 h-2.5 text-white" strokeWidth={4} />
+                                    </div>
+                                )}
+                                <div className="text-left space-y-0.5 pr-4">
+                                    <h4 className={`text-xs font-bold ${selectedTemplate === template.id ? "text-blue-900" : "text-slate-800"}`}>{template.name}</h4>
+                                    <p className='text-[11px] text-slate-400 leading-normal font-medium'>{template.preview}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            ))}
+            )}
         </div>
-      )}
-    </div>
-  )
-}
+    );
+};
 
-export default TemplateSelector
+export default TemplateSelector;

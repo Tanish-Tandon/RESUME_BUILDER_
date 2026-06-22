@@ -1,11 +1,11 @@
-// import React from 'react'
+// import React from 'react';
 
 const Loader = () => {
   return (
-    <div className='flex items-center justify-center h-screen'>
-      <div className='size-12 border-3 border-gray-400 border-t-transparent rounded-full animate-spin'></div>
+    <div className='flex items-center justify-center h-screen bg-slate-50/20 dark:bg-slate-950/20 backdrop-blur-sm'>
+      <div className='size-10 border-[3px] border-slate-200 border-t-indigo-600 rounded-full animate-spin shadow-sm'></div>
     </div>
   )
 }
 
-export default Loader
+export default Loader;
