@@ -1,3 +1,4 @@
+// import React from 'react/
 
 const MinimalTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
@@ -10,121 +11,88 @@ const MinimalTemplate = ({ data, accentColor }) => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8 bg-white text-gray-900 font-light">
-            {/* Header */}
-            <header className="mb-10">
-                <h1 className="text-4xl font-thin mb-4 tracking-wide">
+        <div className="max-w-4xl mx-auto p-8 bg-white text-slate-800 font-light rounded-xl shadow-sm text-left">
+            <header className="mb-8">
+                <h1 className="text-4xl font-extralight text-slate-900 tracking-wide mb-3">
                     {data.personal_info?.full_name || "Your Name"}
                 </h1>
-
-                <div className="flex flex-wrap gap-6 text-sm text-gray-600">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs font-semibold text-slate-400">
                     {data.personal_info?.email && <span>{data.personal_info.email}</span>}
                     {data.personal_info?.phone && <span>{data.personal_info.phone}</span>}
                     {data.personal_info?.location && <span>{data.personal_info.location}</span>}
-                    {data.personal_info?.linkedin && (
-                        <span className="break-all">{data.personal_info.linkedin}</span>
-                    )}
-                    {data.personal_info?.website && (
-                        <span className="break-all">{data.personal_info.website}</span>
-                    )}
+                    {data.personal_info?.linkedin && <span className="break-all">{data.personal_info.linkedin}</span>}
+                    {data.personal_info?.website && <span className="break-all">{data.personal_info.website}</span>}
                 </div>
             </header>
 
-            {/* Professional Summary */}
             {data.professional_summary && (
-                <section className="mb-10">
-                    <p className=" text-gray-700">
-                        {data.professional_summary}
-                    </p>
+                <section className="mb-8">
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal">{data.professional_summary}</p>
                 </section>
             )}
 
-            {/* Experience */}
             {data.experience && data.experience.length > 0 && (
-                <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Experience
-                    </h2>
-
-                    <div className="space-y-6">
+                <section className="mb-8">
+                    <h2 className="text-xs uppercase tracking-[0.2em] mb-4 font-bold" style={{ color: accentColor }}>Experience</h2>
+                    <div className="space-y-5">
                         {data.experience.map((exp, index) => (
-                            <div key={index}>
-                                <div className="flex justify-between items-baseline mb-1">
-                                    <h3 className="text-lg font-medium">{exp.position}</h3>
-                                    <span className="text-sm text-gray-500">
-                                        {formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}
+                            <div key={index} className="space-y-1">
+                                <div className="flex justify-between items-baseline">
+                                    <h3 className="text-base font-bold text-slate-900">{exp.position}</h3>
+                                    <span className="text-xs font-medium text-slate-400 whitespace-nowrap">
+                                        {formatDate(exp.start_date)} — {exp.is_current ? "Present" : formatDate(exp.end_date)}
                                     </span>
                                 </div>
-                                <p className="text-gray-600 mb-2">{exp.company}</p>
-                                {exp.description && (
-                                    <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                                        {exp.description}
-                                    </div>
-                                )}
+                                <p className="text-xs font-semibold text-slate-500">{exp.company}</p>
+                                {exp.description && <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed whitespace-pre-line mt-1">{exp.description}</p>}
                             </div>
                         ))}
                     </div>
                 </section>
             )}
 
-            {/* Projects */}
             {data.project && data.project.length > 0 && (
-                <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Projects
-                    </h2>
-
+                <section className="mb-8">
+                    <h2 className="text-xs uppercase tracking-[0.2em] mb-4 font-bold" style={{ color: accentColor }}>Projects</h2>
                     <div className="space-y-4">
                         {data.project.map((proj, index) => (
-                            <div key={index} className="flex flex-col gap-2 justify-between items-baseline">
-                                <h3 className="text-lg font-medium ">{proj.name}</h3>
-                                <p className="text-gray-600">{proj.description}</p>
+                            <div key={index} className="space-y-0.5">
+                                <h3 className="text-sm font-bold text-slate-900">{proj.name}</h3>
+                                <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">{proj.description}</p>
                             </div>
                         ))}
                     </div>
                 </section>
             )}
 
-            {/* Education */}
             {data.education && data.education.length > 0 && (
-                <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Education
-                    </h2>
-
+                <section className="mb-8">
+                    <h2 className="text-xs uppercase tracking-[0.2em] mb-4 font-bold" style={{ color: accentColor }}>Education</h2>
                     <div className="space-y-4">
                         {data.education.map((edu, index) => (
-                            <div key={index} className="flex justify-between items-baseline">
+                            <div key={index} className="flex justify-between items-baseline text-xs sm:text-sm">
                                 <div>
-                                    <h3 className="font-medium">
-                                        {edu.degree} {edu.field && `in ${edu.field}`}
-                                    </h3>
-                                    <p className="text-gray-600">{edu.institution}</p>
-                                    {edu.gpa && <p className="text-sm text-gray-500">GPA: {edu.gpa}</p>}
+                                    <h3 className="font-bold text-slate-900">{edu.degree} {edu.field && `in ${edu.field}`}</h3>
+                                    <p className="text-slate-500 font-medium text-xs">{edu.institution}</p>
+                                    {edu.gpa && <p className="text-[11px] text-slate-400 mt-0.5">GPA: {edu.gpa}</p>}
                                 </div>
-                                <span className="text-sm text-gray-500">
-                                    {formatDate(edu.graduation_date)}
-                                </span>
+                                <span className="text-xs font-medium text-slate-400">{formatDate(edu.graduation_date)}</span>
                             </div>
                         ))}
                     </div>
                 </section>
             )}
 
-            {/* Skills */}
             {data.skills && data.skills.length > 0 && (
                 <section>
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Skills
-                    </h2>
-
-                    <div className="text-gray-700">
-                        {data.skills.join(" • ")}
+                    <h2 className="text-xs uppercase tracking-[0.2em] mb-3 font-bold" style={{ color: accentColor }}>Skills</h2>
+                    <div className="text-xs sm:text-sm font-medium text-slate-600 leading-relaxed">
+                        {data.skills.join("  •  ")}
                     </div>
                 </section>
             )}
         </div>
     );
-}
+};
 
 export default MinimalTemplate;

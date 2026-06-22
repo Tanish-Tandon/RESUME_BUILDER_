@@ -1,94 +1,56 @@
+// src/App.jsx
+import React, { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login, setLoading } from './app/features/authSlice';
+import api from './configs/api';
+import { Toaster } from 'react-hot-toast';
 
-// import { Home } from 'lucide-react'
-
-
-
-import Home from './pages/Home'
-
-import React, { useEffect } from 'react'
-
-import { Route,Routes } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
-import ResumeBuilder from './pages/ResumeBuilder'
-import Preview from './pages/Preview'
-import Login from './pages/Login'
-import Layout from './pages/Layout'
-import { useDispatch } from 'react-redux'
-import api from './configs/api'
-import { login, setLoading } from './app/features/authSlice'
-import { Toaster } from 'react-hot-toast'
-
-
+// Pages & Components
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import ResumeBuilder from './pages/ResumeBuilder';
+import Preview from './pages/Preview';
+import Layout from './pages/Layout';
+import Login from './pages/Login';
 
 const App = () => {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  const getUserData = async () => {
-    const token = localStorage.getItem('token')
-    try {
-      if(token){
-        const { data } = await api.get('/api/users/data', {headers: {Authorization: token}})
-        if(data.user){
-          dispatch(login({token, user: data.user}))
-        }
-        dispatch(setLoading(false))
-      }else{
-        dispatch(setLoading(false))
+  useEffect(() => {
+    const getUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        dispatch(setLoading(false));
+        return;
       }
-    } catch (error) {
-      dispatch(setLoading(false))
-      console.log(error.message)
-    }
-  }
+      try {
+        const { data } = await api.get('/api/users/data', { 
+            headers: { Authorization: token } 
+        });
+        if (data.user) dispatch(login({ token, user: data.user }));
+      } catch (error) {
+        localStorage.removeItem('token');
+      } finally {
+        dispatch(setLoading(false));
+      }
+    };
+    getUserData();
+  }, [dispatch]);
 
-
-  useEffect(()=>{
-    getUserData()
-
-  },[])
   return (
-    <>
-
-        <Toaster />
-
-
-    <Routes>
-
-
-
-
-      <Route path='/' element={<Home />}/>
-
-
-
-
-       <Route path='app' element={<Layout />}>
-       <Route index element={<Dashboard />}/>
-       <Route path='builder/:resumeId' element={<ResumeBuilder />}/>
-       </Route>
-
-
-           <Route path='view/:resumeId' element={<Preview />}/>
-           {/* <Route path='login' element={<Login />}/> */}
-
-           
-
-      
-
-
-
-
-
-
-
-
-    </Routes>
-
-
-
-    </>
-  )
-}
-
-export default App
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <Toaster position="top-center" />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='view/:resumeId' element={<Preview />} />
+        <Route path='app/auth' element={<Login />} />
+        <Route path='app' element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='builder/:resumeId' element={<ResumeBuilder />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+};
+export default App;
