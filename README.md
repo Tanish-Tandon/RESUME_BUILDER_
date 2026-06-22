@@ -71,10 +71,10 @@ An AI-powered Resume Builder that enables users to create ATS-friendly professio
 ## 🌐 Local Development URLs
 
 Frontend:
-http://localhost:5175/
+https://resume-builder-frontend-d9ze.onrender.com/
 
 Backend:
-http://localhost:9000/
+https://resume-builder-backend-oh6y.onrender.com/
 
 ---
 
